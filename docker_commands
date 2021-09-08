@@ -1,0 +1,29 @@
+## Docker commands used to build the application 
+# TODO: insert the docker build command
+docker build -t anujitm2007/techtrends -f ./dockerfile .
+
+## Docker commands used to run the application
+# TODO: insert the docker run command
+docker run -d --name techtrends-container -p 7111:3111 anujitm2007/techtrends
+
+## Docker commands used to get the application logs
+docker logs -f techtrends-container
+
+## Logs from the container running the TechTrends application
+ * Serving Flask app "app" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://0.0.0.0:3111/ (Press CTRL+C to quit)
+192.168.33.1 - - [07/Sep/2021 18:21:51] "GET / HTTP/1.1" 200 -
+192.168.33.1 - - [07/Sep/2021 18:22:11] "GET / HTTP/1.1" 200 -
+192.168.33.1 - - [07/Sep/2021 18:22:11] "GET /static/css/main.css HTTP/1.1" 200 -
+192.168.33.1 - - [07/Sep/2021 18:25:51] "GET /about HTTP/1.1" 200 -
+192.168.33.1 - - [07/Sep/2021 18:26:05] "GET / HTTP/1.1" 200 -
+192.168.33.1 - - [07/Sep/2021 18:26:07] "GET /create HTTP/1.1" 200 -
+192.168.33.1 - - [07/Sep/2021 18:26:19] "POST /create HTTP/1.1" 302 -
+192.168.33.1 - - [07/Sep/2021 18:26:19] "GET / HTTP/1.1" 200 -
+192.168.33.1 - - [07/Sep/2021 18:26:50] "GET /5 HTTP/1.1" 200 -
+192.168.33.1 - - [07/Sep/2021 18:26:56] "GET / HTTP/1.1" 200 -
+192.168.33.1 - - [07/Sep/2021 18:26:57] "GET /4 HTTP/1.1" 200 -
