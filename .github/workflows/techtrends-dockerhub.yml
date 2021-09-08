@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - 'main'
+      
 jobs:
   docker-build-techtrends:
     runs-on: ubuntu-latest
