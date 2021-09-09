@@ -19,6 +19,7 @@ Vagrant.configure("2") do |config|
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
+  # Author's Comment: I have used IP of my choice here.
   config.vm.network "private_network", ip: "192.168.33.10"
   config.vm.synced_folder ".", "/vagrant", disabled: true
   config.ssh.username = "vagrant"
