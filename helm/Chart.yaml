@@ -1,0 +1,8 @@
+apiVersion: v1
+name: techtrends
+keywords:
+- techtrends
+version: 1.0.0
+maintainers:
+- name: Anuj Kumar Sharma
+  email: anujitm2007@gmail.com 
