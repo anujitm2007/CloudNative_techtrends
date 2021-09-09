@@ -16,8 +16,7 @@ spec:
         app: techtrends
     spec:
       containers:
-      - image: anujitm2007/techtrends
-        imagePullPolicy: IfNotPresent
+      - image: anujitm2007/techtrends:latest
         name: techtrends
         ports:
         - containerPort: 3111
@@ -25,14 +24,13 @@ spec:
           httpGet:
             path: /healthz
             port: 3111
-          initialDelaySeconds: 5
+          initialDelaySeconds: 15
           periodSeconds: 5
         readinessProbe:
           httpGet:
             path: /healthz
             port: 3111
-          initialDelaySeconds: 5
-          periodSeconds: 5
+          initialDelaySeconds: 15
         resources:
           requests:
             cpu: 250m
