@@ -2,6 +2,8 @@ import sqlite3
 
 from flask import Flask, jsonify, json, render_template, request, url_for, redirect, flash
 from werkzeug.exceptions import abort
+from datetime import datetime
+import logging
 
 # Function to get a database connection.
 # This function connects to database with the name `database.db`
@@ -65,44 +67,38 @@ def create():
 
     return render_template('create.html')
 
-@app.route('/healthz', methods=['GET'])
+# Define healthz endpoint
+@app.route('/healthz')
 def healthz():
-
-    response_body = {'result': 'OK - healthy'}
-    status_code = 200
-
     try:
-        valid_db_connection()
-        post_table_exists()
-    except Exception as exc:
-        response_body['result'] = 'ERROR - unhealthy'
-        response_body['details'] = str(exc)
-        status_code = 500
+        connection = get_db_connection()
+        connection.cursor()
+        connection.execute('SELECT * FROM posts')
+        connection.close()
+        return {'result': 'OK - healthy'}
+    except Exception:
+        return {'result': 'ERROR - unhealthy'}, 500
 
-    response = app.response_class(
-        response=json.dumps(response_body),
-        status=status_code,
-        mimetype='application/json')
-
-    return response
-
-
-@app.route('/metrics', methods=['GET'])
+# Define metrics endpoint
+@app.route('/metrics')
 def metrics():
-    metrics_obj = {
-        'db_connection_count': 0,
-        'post_count': None
-    }
+    connection = get_db_connection()
+    posts = connection.execute('SELECT * FROM posts').fetchall()
+    connection.close()
+    post_count = len(posts)
+    data = {"db_connection_count": connection_count, "post_count": post_count}
+    return data
 
-    get_article_count(metrics_obj)
 
-    response = app.response_class(
-        response=json.dumps(metrics_obj),
-        status=200,
-        mimetype='application/json')
+#Function that logs messages
+def log_message(msg):
+    app.logger.info('{time} | {message}'.format(
+        time=datetime.now().strftime("%m/%d/%Y, %H:%M:%S"), message=msg))
 
-    return response
 
 # start the application on port 3111
 if __name__ == "__main__":
-   app.run(host='0.0.0.0', port='3111')
+    ## stream logs to a file
+    logging.basicConfig(level=logging.DEBUG)
+
+    app.run(host='0.0.0.0', port='3111')
