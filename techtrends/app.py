@@ -5,11 +5,16 @@ from werkzeug.exceptions import abort
 from datetime import datetime
 import logging
 
+# Count all database connections
+connection_count = 0
+
 # Function to get a database connection.
 # This function connects to database with the name `database.db`
 def get_db_connection():
+    global connection_count
     connection = sqlite3.connect('database.db')
     connection.row_factory = sqlite3.Row
+    connection_count += 1
     return connection
 
 # Function to get a post using its ID
@@ -89,12 +94,10 @@ def metrics():
     data = {"db_connection_count": connection_count, "post_count": post_count}
     return data
 
-
 #Function that logs messages
 def log_message(msg):
     app.logger.info('{time} | {message}'.format(
         time=datetime.now().strftime("%m/%d/%Y, %H:%M:%S"), message=msg))
-
 
 # start the application on port 3111
 if __name__ == "__main__":
