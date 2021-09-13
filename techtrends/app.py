@@ -164,6 +164,6 @@ if __name__ == "__main__":
     stderr_handler = logging.StreamHandler(sys.stderr)
     handlers = [stderr_handler, stdout_handler]
 
-
-    logging.basicConfig(level=logging.DEBUG, handlers=handlers, format="’%(levelname)s: %(name)-2s - [%(asctime)s] - %(message)s’")
+    format_output = '%(levelname)s: %(name)-2s - [%(asctime)s] - %(message)s'
+    logging.basicConfig(level=logging.DEBUG, handlers=handlers, format=format_output)
     app.run(host='0.0.0.0', port='3111')
