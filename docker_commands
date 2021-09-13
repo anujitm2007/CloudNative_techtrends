@@ -8,20 +8,22 @@ docker run -d --name techtrends-container -p 7111:3111 anujitm2007/techtrends
 docker logs -f techtrends-container
 
 ## Logs from the container running the TechTrends application
+vagrant@anuj-machine:~/my-work/CloudNative_techtrends$ docker logs -f techtrends-container
  * Serving Flask app "app" (lazy loading)
  * Environment: production
    WARNING: This is a development server. Do not use it in a production deployment.
    Use a production WSGI server instead.
  * Debug mode: off
- * Running on http://0.0.0.0:3111/ (Press CTRL+C to quit)
-192.168.33.1 - - [07/Sep/2021 18:21:51] "GET / HTTP/1.1" 200 -
-192.168.33.1 - - [07/Sep/2021 18:22:11] "GET / HTTP/1.1" 200 -
-192.168.33.1 - - [07/Sep/2021 18:22:11] "GET /static/css/main.css HTTP/1.1" 200 -
-192.168.33.1 - - [07/Sep/2021 18:25:51] "GET /about HTTP/1.1" 200 -
-192.168.33.1 - - [07/Sep/2021 18:26:05] "GET / HTTP/1.1" 200 -
-192.168.33.1 - - [07/Sep/2021 18:26:07] "GET /create HTTP/1.1" 200 -
-192.168.33.1 - - [07/Sep/2021 18:26:19] "POST /create HTTP/1.1" 302 -
-192.168.33.1 - - [07/Sep/2021 18:26:19] "GET / HTTP/1.1" 200 -
-192.168.33.1 - - [07/Sep/2021 18:26:50] "GET /5 HTTP/1.1" 200 -
-192.168.33.1 - - [07/Sep/2021 18:26:56] "GET / HTTP/1.1" 200 -
-192.168.33.1 - - [07/Sep/2021 18:26:57] "GET /4 HTTP/1.1" 200 -
+INFO: werkzeug - [2021-09-13 09:04:03,496] -  * Running on http://0.0.0.0:3111/ (Press CTRL+C to quit)
+INFO: werkzeug - [2021-09-13 09:05:22,640] - 192.168.33.1 - - [13/Sep/2021 09:05:22] "GET / HTTP/1.1" 200 -
+INFO: root - [2021-09-13 09:05:25,794] - Article "2020 CNCF Annual Report" retrieved!
+INFO: werkzeug - [2021-09-13 09:05:25,810] - 192.168.33.1 - - [13/Sep/2021 09:05:25] "GET /1 HTTP/1.1" 200 -
+INFO: werkzeug - [2021-09-13 09:05:28,663] - 192.168.33.1 - - [13/Sep/2021 09:05:28] "GET / HTTP/1.1" 200 -
+INFO: root - [2021-09-13 09:05:30,553] - "About Us" page was retrieved
+INFO: werkzeug - [2021-09-13 09:05:30,568] - 192.168.33.1 - - [13/Sep/2021 09:05:30] "GET /about HTTP/1.1" 200 -
+INFO: werkzeug - [2021-09-13 09:05:37,945] - 192.168.33.1 - - [13/Sep/2021 09:05:37] "GET /create HTTP/1.1" 200 -
+INFO: root - [2021-09-13 09:05:55,971] - Article "New Article" created
+INFO: werkzeug - [2021-09-13 09:05:55,976] - 192.168.33.1 - - [13/Sep/2021 09:05:55] "POST /create HTTP/1.1" 302 -
+INFO: werkzeug - [2021-09-13 09:05:55,995] - 192.168.33.1 - - [13/Sep/2021 09:05:55] "GET / HTTP/1.1" 200 -
+ERROR: root - [2021-09-13 09:06:03,562] - Article with id 12 does not exists
+INFO: werkzeug - [2021-09-13 09:06:03,578] - 192.168.33.1 - - [13/Sep/2021 09:06:03] "GET /12 HTTP/1.1" 404 -
